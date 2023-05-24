@@ -1,13 +1,21 @@
-import React from 'react'
+import React from "react";
+import { Button } from "@mui/material";
 
-const Button = (props) => {
+const MyButton = (props) => {
   return (
     <div>
-        <button className='props.class' onClick={props.action} type='props.type' name='props.name'> 
-            {props.value}
-        </button>
+      <Button
+        className={props.class}
+        onClick={props.action}
+        variant={props.variant}
+        type={props.type}
+        name={props.name}
+        color={props.color}
+      >
+        {props.value}
+      </Button>
     </div>
-  )
-}
+  );
+};
 
-export default Button
+export default MyButton;

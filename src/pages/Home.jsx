@@ -6,7 +6,7 @@ import Login from './Login'
 const Home = () => {
   return (
     <div>Home
-        <Login/>
+        
     </div>
   )
 }
