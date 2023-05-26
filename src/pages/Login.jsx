@@ -5,6 +5,8 @@ import { Box } from "@mui/material";
 import MyButton from "../components/Button";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import Cookies from 'js-cookie';
+
 
 const Login = () => {
   const [username, setUsername] = useState("");
@@ -16,12 +18,14 @@ const Login = () => {
     console.log({ password, username });
     try {
       const response = await axios.post(
-        'https://localhost:7254/api/Users/login',
+        'https://localhost:44372/api/Users/login',
         { username, password }
       );
       const data = response.data;
       console.log(data);
       if(data.isSuccess == true){
+        console.log(data.result.token);
+        Cookies.set('jwtToken',data.result.token)
         navigate('/');
       }
       else{
