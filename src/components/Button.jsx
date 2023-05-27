@@ -1,5 +1,6 @@
 import React from "react";
-import { Button } from "@mui/material";
+// import { Button } from "@mui/material";
+import { Button } from "react-bootstrap";
 
 const MyButton = (props) => {
   return (
@@ -11,6 +12,7 @@ const MyButton = (props) => {
         type={props.type}
         name={props.name}
         color={props.color}
+        size={props.size}
       >
         {props.value}
       </Button>

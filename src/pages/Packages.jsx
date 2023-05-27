@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
+import PackageCard from '../components/PackageCard';
+import './Packages.css'
 
 const Packages = () => {
   const [pack,setPack] = useState([])
@@ -9,12 +11,9 @@ const Packages = () => {
 
   },[])
   return (
-    <div>
+    <div className='packages-container'>
       {pack.map((p) => (
-        <div key={p.packageId}>
-          <img src={`https://localhost:44372/coverImage/${p.coverImage}`}  alt="click me" />
-          <h1>{p.packageName}</h1>
-        </div>
+        <PackageCard key={p.id} id={p.packId} name={p.packageName} image = {`https://localhost:44372/coverImage/${p.coverImage}`} alt={p.name} location={p.location} price={p.pricePerHead}/>
       ))}
     </div>
   );

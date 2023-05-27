@@ -4,6 +4,7 @@ import './App.css'
 import Home from './pages/Home'
 import Packages from './pages/Packages'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
   const [count, setCount] = useState(0)

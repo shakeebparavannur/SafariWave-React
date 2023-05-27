@@ -1,11 +1,13 @@
 import { TextField } from '@mui/material';
 import React from 'react';
+import { Form } from 'react-bootstrap';
 // import './InputField.css';
 
 const InputField = (props) => {
   return (
     <div>
-      <TextField
+      <Form.Label htmlFor = {props.id}>{props.label}</Form.Label>
+      <Form.Control
         id={props.id}
         label={props.label}
         variant={props.variant}

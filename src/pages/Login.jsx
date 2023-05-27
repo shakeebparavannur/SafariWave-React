@@ -6,6 +6,7 @@ import MyButton from "../components/Button";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import Cookies from 'js-cookie';
+import { Form } from "react-bootstrap";
 
 
 const Login = () => {
@@ -39,8 +40,8 @@ const Login = () => {
   };
 
   return (
-    <Box
-      component="form"
+    <Form
+      // component="form"
       onSubmit={handleSubmit}
       sx={{ "&>:not(style)": { m: 1, width: "25ch" } }}
       autoComplete="off"
@@ -66,9 +67,9 @@ const Login = () => {
         type="submit"
         value="login"
         name="login"
-        variant="outlined"
+        variant="outline-success"
       />
-    </Box>
+    </Form>
   );
 };
 
