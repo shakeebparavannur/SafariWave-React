@@ -10,10 +10,13 @@ const InputField = (props) => {
       <Form.Control
         id={props.id}
         label={props.label}
+        name={props.name}
         variant={props.variant}
         type={props.type}
         onChange={props.onChange}
         className={props.className}
+        as={props.as}
+        rows ={props.row}
         
       />
     </div>

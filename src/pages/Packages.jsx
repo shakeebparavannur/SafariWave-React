@@ -6,7 +6,7 @@ import './Packages.css'
 const Packages = () => {
   const [pack,setPack] = useState([])
   useEffect(()=>{
-    axios.get('https://localhost:44372/api/Packages').then((response)=>setPack(response.data))
+    axios.get('https://localhost:7254/api/Packages').then((response)=>setPack(response.data))
     
 
   },[])
