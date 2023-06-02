@@ -80,10 +80,10 @@ const Signup = () => {
          console.log(response.data);
       }
       catch(error){
-        console.error(error);
+        console.log(error);
         if(error.response && error.response.data && error.response.data.errorMessages ){
           const errorMessages = error.response.data.errorMessages;
-          setErrorMessage(errorMessages[0]);
+          setErrorMessage(errorMessages);
           console.log(errorMessages);
         }
         else{
