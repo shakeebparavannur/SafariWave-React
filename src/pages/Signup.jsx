@@ -11,7 +11,7 @@ const validationSchema = Yup.object().shape({
   username: Yup.string().required("Username is required"),
   fullName: Yup.string().required("Full name is required"),
   email: Yup.string().email("Invalid email address").required("Email is required"),
-  phonenumber: Yup.string().required("Phone number is required"),
+  phoneNo: Yup.string().required("Phone number is required"),
   address: Yup.string().required("Address is required"),
   pincode: Yup.number().required("Postal Code is required"),
   state: Yup.string().required("State is required"),
@@ -64,7 +64,7 @@ const Signup = () => {
       username: "",
       fullName: "",
       email: "",
-      phonenumber: "",
+      phoneNo: "",
       address: "",
       pincode: "",
       state: "",
@@ -72,7 +72,9 @@ const Signup = () => {
       confpassword: "",
     },
     validationSchema:validationSchema,
+    
     onSubmit: async(values)=>{
+      
       try{
         const {confpassword,...reqData} = values
          const response = await axios.post("https://localhost:7254/api/Users/register",
@@ -80,8 +82,8 @@ const Signup = () => {
          console.log(response.data);
       }
       catch(error){
-        console.log(error);
-        if(error.response && error.response.data && error.response.data.errorMessages ){
+        console.log(error.response);
+        if(error.response && error.response.data && error.response.data.errorMessages &&error.response.data.IsSuccess==false ){
           const errorMessages = error.response.data.errorMessages;
           setErrorMessage(errorMessages);
           console.log(errorMessages);
@@ -104,6 +106,7 @@ const Signup = () => {
         label="please choose your username"
         variant="outlined"
         type="text"
+        name="username"
         {...formik.getFieldProps("username")}
           error={formik.touched.username && formik.errors.username}
       />
@@ -112,6 +115,7 @@ const Signup = () => {
         label="Enter Your Fullname"
         variant="outlined"
         type="text"
+        name="fullName"
         {...formik.getFieldProps("fullName")}
           error={formik.touched.fullName && formik.errors.fullName}
       />
@@ -120,16 +124,18 @@ const Signup = () => {
         label="Enter Your Email"
         variant="outlined"
         type="email"
+        name="email"
         {...formik.getFieldProps("email")}
           error={formik.touched.email && formik.errors.email}
       />
       <InputField
-        id="phonenumber"
+        id="phoneNo"
         label="Enter your Phone number"
         variant="outlined"
         type="tel"
-        {...formik.getFieldProps("phonenumber")}
-          error={formik.touched.phonenumber && formik.errors.phonenumber}
+        name="phoneNo"
+        {...formik.getFieldProps("phoneNo")}
+          error={formik.touched.phoneNo && formik.errors.phoneNo}
       />
       <InputField
         id="address"
@@ -137,6 +143,7 @@ const Signup = () => {
         variant="outlined"
         as="textarea"
         row={3}
+        name="address"
         type="text"
         {...formik.getFieldProps("address")}
           error={formik.touched.address && formik.errors.address}
@@ -146,11 +153,13 @@ const Signup = () => {
         label="Enter your Postal Code"
         variant="outlined"
         type="number"
+        name="pincode"
         {...formik.getFieldProps("pincode")}
           error={formik.touched.pincode && formik.errors.pincode}
       />
       <InputSelect  selectTitle = "Choose the state" label="State" id="state" options={statesInIndia} title="state" name="state"
       {...formik.getFieldProps("state")}
+      
       value={formik.values.state}
       error={formik.touched.state && formik.errors.state}
       />
@@ -159,6 +168,7 @@ const Signup = () => {
         label="Enter Password"
         variant="outlined"
         type="password"
+        name="password"
         {...formik.getFieldProps("password")}
           error={formik.touched.password && formik.errors.password}
       />
