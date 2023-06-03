@@ -1,22 +1,36 @@
-import React, { useEffect, useState } from 'react'
-import axios from 'axios'
-import PackageCard from '../components/PackageCard';
-import './Packages.css'
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import { Link,useNavigate } from "react-router-dom";
+import PackageCard from "../components/PackageCard";
+import "./Packages.css";
 
 const Packages = () => {
-  const [pack,setPack] = useState([])
-  useEffect(()=>{
-    axios.get('https://localhost:7254/api/Packages').then((response)=>setPack(response.data))
-    
-
-  },[])
+  const navigate = useNavigate()
+  const [pack, setPack] = useState([]);
+  useEffect(() => {
+    axios
+      .get("https://localhost:7254/api/Packages")
+      .then((response) => setPack(response.data));
+  }, []);
   return (
-    <div className='packages-container'>
+    <div className="packages-container">
       {pack.map((p) => (
-        <PackageCard key={p.id} id={p.packId} name={p.packageName} image = {`https://localhost:7254/coverImage/${p.coverImage}`} alt={p.name} location={p.location} price={p.pricePerHead}/>
+        <PackageCard
+          key={p.id}
+          id={p.packId}
+          name={p.packageName}
+          image={`https://localhost:7254/coverImage/${p.coverImage}`}
+          alt={p.name}
+          location={p.location}
+          price={p.pricePerHead}
+          btnClass="packdetails"
+          actions= {()=>navigate(`productdetails/${p.packId}`)}
+          Btnvalue="view details"
+
+        />
       ))}
     </div>
   );
 };
 
-export default Packages
+export default Packages;
