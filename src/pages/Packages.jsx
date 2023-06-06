@@ -12,6 +12,7 @@ const Packages = () => {
       .get("https://localhost:7254/api/Packages")
       .then((response) => setPack(response.data));
   }, []);
+  console.log(pack);
   return (
     <div className="packages-container">
       {pack.map((p) => (

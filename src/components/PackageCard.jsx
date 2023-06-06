@@ -6,10 +6,11 @@ const PackageCard = (props) => {
   return (
     <div className="package-card">
       <h3>{props.name}</h3>
-      <h2>{props.id}</h2>
+      {/* <h2>{props.id}</h2> */}
       <img src={props.image} alt={props.alt} />
       <h5>{props.location}</h5>
-      <p>{props.price}</p>
+      <p className="price">{props.price}</p>
+      <p className="offerprice">{props.offerPrice}</p>
       <MyButton
         className={props.btnClass}
         action={props.actions}
