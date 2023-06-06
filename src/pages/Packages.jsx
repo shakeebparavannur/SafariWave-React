@@ -23,6 +23,7 @@ const Packages = () => {
           alt={p.name}
           location={p.location}
           price={p.pricePerHead}
+          offerPrice={p.offerPrice}
           btnClass="packdetails"
           actions= {()=>navigate(`productdetails/${p.packId}`)}
           Btnvalue="view details"

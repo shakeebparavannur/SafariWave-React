@@ -68,10 +68,13 @@ const AddPackage = () => {
 
 
         <div className="row">
-          <div className="col-md-6">
+          <div className="col-md-4">
             <InputField type="number" label="Price/Head" id="pricePerHead" name="PricePerHead" />
           </div>
-          <div className="col-md-6">
+          <div className="col-md-4">
+            <InputField type="number" label="OfferPricePrice/Head" id="pricePerHead" name="OfferPrice" />
+          </div>
+          <div className="col-md-4">
             <InputField type="number" label="Minimum no of Person" id="minPerson" name="MinNoOfPerson" />
           </div>
         </div>
