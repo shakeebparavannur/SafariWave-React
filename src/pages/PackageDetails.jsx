@@ -8,7 +8,7 @@ const PackageDetails = () => {
   return (
     
     <div>
-        <img src={`https://localhost:7254/coverImage/${packages.coverImage}`}/>
+        <img src={`https://localhost:7254/coverImage/${packages.image2}`}/>
         {packages.packageName}
     </div>
   )

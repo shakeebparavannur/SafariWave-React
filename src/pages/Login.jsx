@@ -1,15 +1,17 @@
-import React, { useState } from "react";
+import React, { useState,useContext } from "react";
 import "./Login.css";
 import InputField from "../components/InputField";
-import { Box } from "@mui/material";
+// import { Box } from "@mui/material";
 import MyButton from "../components/Button";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import Cookies from 'js-cookie';
 import { Form } from "react-bootstrap";
+import { userContext } from "../App";
 
 
 const Login = () => {
+  const {setIsUserLoggedIn} = useContext(userContext)
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate()
@@ -27,6 +29,7 @@ const Login = () => {
       if(data.isSuccess == true){
         console.log(data.result.token);
         Cookies.set('jwtToken',data.result.token)
+        setIsUserLoggedIn(true);
         navigate('/');
       }
       else{

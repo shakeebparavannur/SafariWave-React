@@ -16,11 +16,12 @@ const Packages = () => {
   return (
     <div className="packages-container">
       {pack.map((p) => (
+        <div key={p.packId}>
         <PackageCard
-          key={p.id}
+          // key={p.packId}
           id={p.packId}
           name={p.packageName}
-          image={`https://localhost:7254/coverImage/${p.coverImage}`}
+          image={`https://localhost:7254/Image/${p.image1}`}
           alt={p.name}
           location={p.location}
           price={p.pricePerHead}
@@ -30,6 +31,7 @@ const Packages = () => {
           Btnvalue="view details"
 
         />
+        </div>
       ))}
     </div>
   );
