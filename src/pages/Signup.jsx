@@ -6,6 +6,8 @@ import * as Yup from "yup";
 import InputSelect from "../components/InputSelect";
 import MyButton from "../components/Button";
 import axios from "axios";
+// import { Modal } from "@mui/material";
+import { Modal } from "react-bootstrap";
 
 const validationSchema = Yup.object().shape({
   username: Yup.string().required("Username is required"),
@@ -19,10 +21,13 @@ const validationSchema = Yup.object().shape({
   confpassword: Yup.string()
     .oneOf([Yup.ref("password"), null], "Passwords must match")
     .required("Confirm Password is required"),
+  
 });
+const otpValidatinSchema =Yup.object({otp:Yup.string().required("Otp is required")});
 
 const Signup = () => {
   const [errorMessage, setErrorMessage] = useState("")
+  const [showOTPModal, setShowOTPModal] = useState(false);
   const statesInIndia = [
     "Andhra Pradesh",
     "Arunachal Pradesh",
@@ -80,6 +85,7 @@ const Signup = () => {
          const response = await axios.post("https://localhost:7254/api/Users/register",
          reqData);
          console.log(response.data);
+         setShowOTPModal(true);
       }
       catch(error){
         console.log(error.response);
@@ -94,6 +100,40 @@ const Signup = () => {
         }
       }
     
+    }
+  })
+  const formikOtp = useFormik({
+    initialValues:{
+      otp:"",
+    },
+    validationSchema:otpValidatinSchema,
+    onSubmit:async (values)=>{
+      console.log(typeof(formik.values.phoneNo));
+      console.log(typeof(values.otp));
+      try{
+        const response = await axios.post("https://localhost:7254/api/Users/verify",{
+        phoneNo:formik.values.phoneNo,
+        otp:values.otp,
+        });
+        console.log(response.data);
+        setShowOTPModal(false);
+      }
+      catch(error){
+        
+        console.log(error.response);
+        if(error.response &&
+          error.response.data &&
+          error.response.data.errorMessages &&
+          error.response.data.IsSuccess === false){
+            const errorMessage = error.response.data.errorMessages;
+            setErrorMessage(errorMessage);
+            console.log(errorMessage); 
+          }
+          else{
+            setErrorMessage("An error occurred please try again");
+            console.log("An error occurred please try again");
+          }
+      }
     }
   })
 
@@ -181,6 +221,27 @@ const Signup = () => {
           error={formik.touched.confpassword && formik.errors.confpassword}
       />
       <MyButton type="submit" variant="primary" value="signup"/>
+      <Modal show={showOTPModal} onHide={() => setShowOTPModal(false)}>
+          <Modal.Header closeButton>
+            <Modal.Title>OTP Verification</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <Form onSubmit={formikOtp.handleSubmit}>
+              <InputField
+                id="otp"
+                label="Enter OTP"
+                variant="outlined"
+                type="text"
+                name="otp"
+                {...formikOtp.getFieldProps("otp")}
+                error={formikOtp.touched.otp && formikOtp.errors.otp}
+              />
+              <MyButton type="submit" variant="primary" value="submit">
+                Verify OTP
+              </MyButton>
+            </Form>
+          </Modal.Body>
+        </Modal>
 
       </Form>
       {errorMessage && (
