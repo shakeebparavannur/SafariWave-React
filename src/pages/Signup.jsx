@@ -64,6 +64,7 @@ const Signup = () => {
     "Lakshadweep",
     "Puducherry",
   ];
+  var test = "teststring"
   const formik=  useFormik({
     initialValues:{
       username: "",
@@ -84,7 +85,7 @@ const Signup = () => {
         const {confpassword,...reqData} = values
          const response = await axios.post("https://localhost:7254/api/Users/register",
          reqData,{ withCredentials: true });
-         sessionStorage.setItem("UserData", JSON.stringify(response.data.result));
+         sessionStorage.setItem("userdata", JSON.stringify(response.data.result));
          console.log(response.data);
          console.log(response.data);
          setShowOTPModal(true);
@@ -113,9 +114,12 @@ const Signup = () => {
       console.log(typeof(formik.values.phoneNo));
       console.log(typeof(values.otp));
       try{
+        const userdata = JSON.parse(sessionStorage.getItem("userdata"));
         const response = await axios.post("https://localhost:7254/api/Users/verify",{
         phoneNo:formik.values.phoneNo,
         otp:values.otp,
+        userDatum:userdata,
+
         });
         console.log(response.data);
         setShowOTPModal(false);
