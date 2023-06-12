@@ -83,7 +83,9 @@ const Signup = () => {
       try{
         const {confpassword,...reqData} = values
          const response = await axios.post("https://localhost:7254/api/Users/register",
-         reqData);
+         reqData,{ withCredentials: true });
+         sessionStorage.setItem("UserData", JSON.stringify(response.data.result));
+         console.log(response.data);
          console.log(response.data);
          setShowOTPModal(true);
       }
