@@ -119,7 +119,6 @@ const Signup = () => {
         phoneNo:formik.values.phoneNo,
         otp:values.otp,
         userDatum:userdata,
-
         });
         console.log(response.data);
         setShowOTPModal(false);

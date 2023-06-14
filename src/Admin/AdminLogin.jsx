@@ -8,10 +8,9 @@ import { useNavigate } from "react-router-dom";
 import Cookies from 'js-cookie';
 import { Form } from "react-bootstrap";
 import { userContext } from "../App";
-import jwtDecode from "jwt-decode";
 
 
-const Login = () => {
+const AdminLogin = () => {
   const {setIsUserLoggedIn} = useContext(userContext)
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -22,7 +21,7 @@ const Login = () => {
     console.log({ password, username });
     try {
       const response = await axios.post(
-        'https://localhost:7254/api/Users/login',
+        'https://localhost:7254/api/Users/Admin',
         { username, password }
       );
       const data = response.data;
@@ -30,11 +29,8 @@ const Login = () => {
       if(data.isSuccess == true){
         console.log(data.result.token);
         Cookies.set('jwtToken',data.result.token)
-        const decodToken = jwtDecode(data.result.token)
-        const role = decodToken.role;
-        console.log(decodToken, role);
         setIsUserLoggedIn(true);
-        navigate('/');
+        navigate('/adminhome');
       }
       else{
         alert(data.errorMessage);
@@ -53,7 +49,7 @@ const Login = () => {
       sx={{ "&>:not(style)": { m: 1, width: "25ch" } }}
       autoComplete="off"
     >
-      <h3>Login</h3>
+      <h3>Admin Login</h3>
       <InputField
         id="username"
         label="Username"
@@ -80,4 +76,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default AdminLogin;
