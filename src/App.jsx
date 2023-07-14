@@ -2,7 +2,7 @@ import { createContext, useState } from 'react'
 import Login from './pages/Login'
 import './App.css'
 import Home from './pages/Home'
-import Packages from './pages/Packages'
+import Packages from './components/Packages'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import AddPackage from './Admin/AddPackage'

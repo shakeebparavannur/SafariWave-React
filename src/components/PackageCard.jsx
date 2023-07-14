@@ -2,7 +2,7 @@ import React from "react";
 import "./PackageCard.css";
 import MyButton from "./Button";
 const PackageCard = (props) => {
-  console.log(props, "+++++");
+  console.log(props, "packagecard props")
   return (
     <div className="package-card">
       <h3>{props.name}</h3>

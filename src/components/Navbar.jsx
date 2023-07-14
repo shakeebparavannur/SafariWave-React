@@ -5,6 +5,7 @@ import { Search as SearchIcon } from '@mui/icons-material';
 import Cookies from 'js-cookie';
 import { useEffect } from 'react';
 import { userContext } from '../App';
+import './Navbar.css';
 
 const Navbar = () => {
     const {isUserLoggedIn,setIsUserLoggedIn} = useContext(userContext)
@@ -17,8 +18,8 @@ const Navbar = () => {
         setIsUserLoggedIn(false);
     }
   return (
-    <AppBar position="static">
-      <Toolbar sx={{ display: 'flex', justifyContent: 'space-between' }}>
+    <AppBar sx={{top:'20px',backgroundColor:'#131A2F',width:"1000px",marginRight:"300px",height:"76px",paddingTop:"6px"}}>
+      <Toolbar sx={{position:'sticky', display: 'flex', justifyContent:'space-between'}}>
         <Typography variant="h6" component="div">
           Safari Wave
         </Typography>

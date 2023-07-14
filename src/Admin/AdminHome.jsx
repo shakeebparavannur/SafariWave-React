@@ -1,6 +1,6 @@
 import React from 'react'
 import AdminNavbar from './AdminNavbar'
-import Packages from '../pages/Packages'
+import Packages from '../components/Packages'
 
 const AdminHome = () => {
   return (
