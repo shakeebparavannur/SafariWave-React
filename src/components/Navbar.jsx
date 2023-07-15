@@ -41,8 +41,8 @@ const Navbar = () => {
     }
     
   return (
-    <AppBar position="static" sx={{backgroundColor:'#131A2F',margin:"auto"}}>
-      <Container maxWidth="xl">
+    <AppBar position="relative" sx={{backgroundColor:'#131A2F',margin:"auto"}}>
+      <Container maxWidth="xl" sx={{position:"sticky"}}>
         <Toolbar disableGutters>
           <div className="logo-div">
           <img src={logo} alt="" className='logo-png' />
