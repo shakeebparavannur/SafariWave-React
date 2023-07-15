@@ -15,9 +15,9 @@ const Packages = () => {
   }, []);
   console.log(pack);
   return (
-    <div className="packages-container">
+    <div className="package-container row mt-3 ms-3 me-3">
       {pack.map((p) => (
-        <div key={p.packId} className="package-container-card">
+        <div key={p.packId} className="package-container-card col-lg-3 col-md-6 mt-3">
           <PackageCard
             id={p.packId}
             name={p.packageName}

@@ -101,20 +101,29 @@ const Navbar = () => {
                 </MenuItem>
               ))} */}
               <MenuItem >
+              <Link to="/package" style={{ color: 'black', textDecoration: 'none', marginRight: '16px' }}>
               <Typography textAlign="center">Packages</Typography>
+              </Link>
               </MenuItem>
               <MenuItem >
+              <Link to="/services" style={{ color: 'black', textDecoration: 'none', marginRight: '16px' }}>
               <Typography textAlign="center">Services</Typography>
+              </Link>
               </MenuItem>
               <MenuItem >
+              <Link to="/contact" style={{ color: 'black', textDecoration: 'none', marginRight: '16px' }}>
               <Typography textAlign="center">Contact Us</Typography>
+              </Link>
               </MenuItem>
-              {(isUserLoggedIn)&&<MenuItem >
+              {(isUserLoggedIn)&&
+              <MenuItem >
+              <Link to="/booking" style={{ color: 'black', textDecoration: 'none', marginRight: '16px' }}>
               <Typography textAlign="center">Bookings</Typography>
+              </Link>
               </MenuItem>}
             </Menu>
           </Box>
-          {/* <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} /> */}
+          
         
           <Typography
             variant="h5"
@@ -144,9 +153,12 @@ const Navbar = () => {
                 {page}
               </Button>
             ))} */}
-            <Button sx={{my:2,color :'white', display:'block'}} >Packages</Button>
-            <Button sx={{my:2,color :'white', display:'block'}} >Services</Button>
-            <Button sx={{my:2,color :'white', display:'block'}} >Contact us</Button>
+            <Link to="/package" style={{ color: 'black', textDecoration: 'none', marginRight: '16px' }}>
+            <Button sx={{my:2,color :'white', display:'block'}}>Packages</Button></Link>
+            <Link to="/services" style={{ color: 'black', textDecoration: 'none', marginRight: '16px' }}>
+            <Button sx={{my:2,color :'white', display:'block'}} >Services</Button></Link>
+            <Link to="/contact" style={{ color: 'black', textDecoration: 'none', marginRight: '16px' }}>
+            <Button sx={{my:2,color :'white', display:'block'}} >Contact us</Button></Link>
           </Box>
 
           <Box sx={{ flexGrow: 0 }}>
