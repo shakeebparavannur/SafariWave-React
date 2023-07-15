@@ -1,13 +1,35 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState,useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { AppBar, Toolbar, Typography, IconButton, InputBase, Box } from '@mui/material';
-import { Search as SearchIcon } from '@mui/icons-material';
+import logo from '../assets/image/logo-tran-white-high.png'
+import { AppBar, Box, Toolbar, IconButton, Typography, Menu, MenuItem, Avatar, Button, Tooltip } from '@mui/material';
+import { Menu as MenuIcon } from '@mui/icons-material';
+import Container from '@mui/material/Container';
 import Cookies from 'js-cookie';
-import { useEffect } from 'react';
+
+
+
 import { userContext } from '../App';
 import './Navbar.css';
 
+const pages = ['Packages', 'Services', 'Blog'];
+const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 const Navbar = () => {
+  const [anchorElNav, setAnchorElNav] = useState(null);
+  const [anchorElUser, setAnchorElUser] =useState(null);
+  const handleOpenNavMenu = (event) => {
+    setAnchorElNav(event.currentTarget);
+  };
+  const handleOpenUserMenu = (event) => {
+    setAnchorElUser(event.currentTarget);
+  };
+
+  const handleCloseNavMenu = () => {
+    setAnchorElNav(null);
+  };
+
+  const handleCloseUserMenu = () => {
+    setAnchorElUser(null);
+  };
     const {isUserLoggedIn,setIsUserLoggedIn} = useContext(userContext)
     useEffect(() => {
         const jwtToken = Cookies.get('jwtToken');
@@ -17,80 +39,160 @@ const Navbar = () => {
         Cookies.remove('jwtToken')
         setIsUserLoggedIn(false);
     }
+    
   return (
-    <AppBar sx={{top:'20px',backgroundColor:'#131A2F',width:"1000px",marginRight:"300px",height:"76px",paddingTop:"6px"}}>
-      <Toolbar sx={{position:'sticky', display: 'flex', justifyContent:'space-between'}}>
-        <Typography variant="h6" component="div">
-          Safari Wave
-        </Typography>
-
-        <Box sx={{ display: 'flex', alignItems: 'center' }}>
-          <Link to="/" style={{ color: 'white', textDecoration: 'none', marginRight: '16px' }}>
-            <Typography variant="subtitle1">
-              Home
-            </Typography>
-          </Link>
-          <Link to="/packages" style={{ color: 'white', textDecoration: 'none', marginRight: '16px' }}>
-            <Typography variant="subtitle1">
-              Packages
-            </Typography>
-          </Link>
-          <Link to="/services" style={{ color: 'white', textDecoration: 'none', marginRight: '16px' }}>
-            <Typography variant="subtitle1">
-              Services
-            </Typography>
-          </Link>
-          {isUserLoggedIn ? (
-            <>
-            <Link to="/profile" style={{ color: 'white', textDecoration: 'none', marginRight: '16px' }}>
-              <Typography variant="subtitle1">
-                Profile
-              </Typography>
-            </Link>
-            <Link onClick={Logout} style={{ color: 'white', textDecoration: 'none', marginRight: '16px' }}>
-              <Typography variant="subtitle1">
-                Logout
-              </Typography>
-            </Link>
-            <Link to="/booking" style={{ color: 'white', textDecoration: 'none', marginRight: '16px' }}>
-            <Typography variant="subtitle1">
-              Booking
-            </Typography>
-          </Link>
-            </>
-          ) : (
-            <>
-            <Link to="/login" style={{ color: 'white', textDecoration: 'none', marginRight: '16px' }}>
-              <Typography variant="subtitle1">
-                Login
-              </Typography>
-            </Link>
-            <Link to="/signup" style={{ color: 'white', textDecoration: 'none', marginRight: '16px' }}>
-              <Typography variant="subtitle1">
-                Signup
-              </Typography>
-            </Link>
-            </>
-            
-          )}
-          
-          <Link to="/contact" style={{ color: 'white', textDecoration: 'none', marginRight: '16px' }}>
-            <Typography variant="subtitle1">
-              Contact Us
-            </Typography>
-          </Link>
-          <div sx={{ display: 'flex', alignItems: 'center' }}>
-            <IconButton color="inherit" aria-label="search">
-              <SearchIcon />
-            </IconButton>
-            <InputBase
-              placeholder="Search..."
-              inputProps={{ 'aria-label': 'search' }}
-              sx={{ color: 'inherit' }}
-            />
+    <AppBar position="static" sx={{backgroundColor:'#131A2F',margin:"auto"}}>
+      <Container maxWidth="xl">
+        <Toolbar disableGutters>
+          <div className="logo-div">
+          <img src={logo} alt="" className='logo-png' />
           </div>
-        </Box>
-      </Toolbar>
+          {/* <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} /> */}
+          <Typography
+            variant="h6"
+            noWrap
+            component="a"
+            href="/"
+            sx={{
+              mr: 2,
+              display: { xs: 'none', md: 'flex' },
+              fontFamily: 'monospace',
+              fontWeight: 700,
+              letterSpacing: '.3rem',
+              color: 'inherit',
+              textDecoration: 'none',
+            }}
+          >
+            Safari Wave
+          </Typography>
+
+          <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
+            <IconButton
+              size="large"
+              aria-label="account of current user"
+              aria-controls="menu-appbar"
+              aria-haspopup="true"
+              onClick={handleOpenNavMenu}
+              color="inherit"
+            >
+              <MenuIcon />
+            </IconButton>
+            <Menu
+              id="menu-appbar"
+              anchorEl={anchorElNav}
+              anchorOrigin={{
+                vertical: 'bottom',
+                horizontal: 'left',
+              }}
+              keepMounted
+              transformOrigin={{
+                vertical: 'top',
+                horizontal: 'left',
+              }}
+              open={Boolean(anchorElNav)}
+              onClose={handleCloseNavMenu}
+              sx={{
+                display: { xs: 'block', md: 'none' },
+              }}
+            >
+              {/* {pages.map((page) => (
+                <MenuItem key={page} onClick={handleCloseNavMenu}>
+                  <Typography textAlign="center">{page}</Typography>
+                </MenuItem>
+              ))} */}
+              <MenuItem >
+              <Typography textAlign="center">Packages</Typography>
+              </MenuItem>
+              <MenuItem >
+              <Typography textAlign="center">Services</Typography>
+              </MenuItem>
+              <MenuItem >
+              <Typography textAlign="center">Contact Us</Typography>
+              </MenuItem>
+              {(isUserLoggedIn)&&<MenuItem >
+              <Typography textAlign="center">Bookings</Typography>
+              </MenuItem>}
+            </Menu>
+          </Box>
+          {/* <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} /> */}
+        
+          <Typography
+            variant="h5"
+            noWrap
+            component="a"
+            href=""
+            sx={{
+              mr: 2,
+              display: { xs: 'flex', md: 'none' },
+              flexGrow: 1,
+              fontFamily: 'monospace',
+              fontWeight: 700,
+              letterSpacing: '.3rem',
+              color: 'inherit',
+              textDecoration: 'none',
+            }}
+          >
+            Safari Wave
+          </Typography>
+          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+            {/* {pages.map((page) => (
+              <Button
+                key={page}
+                onClick={handleCloseNavMenu}
+                sx={{ my: 2, color: 'white', display: 'block' }}
+              >
+                {page}
+              </Button>
+            ))} */}
+            <Button sx={{my:2,color :'white', display:'block'}} >Packages</Button>
+            <Button sx={{my:2,color :'white', display:'block'}} >Services</Button>
+            <Button sx={{my:2,color :'white', display:'block'}} >Contact us</Button>
+          </Box>
+
+          <Box sx={{ flexGrow: 0 }}>
+            <Tooltip title="Open settings">
+              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+              </IconButton>
+            </Tooltip>
+            <Menu
+              sx={{ mt: '45px' }}
+              id="menu-appbar"
+              anchorEl={anchorElUser}
+              anchorOrigin={{
+                vertical: 'top',
+                horizontal: 'right',
+              }}
+              keepMounted
+              transformOrigin={{
+                vertical: 'top',
+                horizontal: 'right',
+              }}
+              open={Boolean(anchorElUser)}
+              onClose={handleCloseUserMenu}
+            >
+              {/* {settings.map((setting) => (
+                <MenuItem key={setting} onClick={handleCloseUserMenu}>
+                  <Typography textAlign="center">{setting}</Typography>
+                </MenuItem>
+              ))} */}
+              {isUserLoggedIn?(<><MenuItem >
+              <Typography textAlign="center">Profile</Typography>
+              </MenuItem>
+              <MenuItem >
+              <Typography textAlign="center">Logout</Typography>
+              </MenuItem></>):(<><MenuItem >
+              <Typography textAlign="center">Login</Typography>
+              </MenuItem>
+              <MenuItem >
+              <Typography textAlign="center">SignUp</Typography>
+              </MenuItem></>)}
+              
+              
+            </Menu>
+          </Box>
+        </Toolbar>
+      </Container>
     </AppBar>
   );
 };

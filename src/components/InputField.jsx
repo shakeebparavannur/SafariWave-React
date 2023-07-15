@@ -9,8 +9,6 @@ const InputField = (props) => {
       <Form.Group htmlFor={props.id}>
       <Form.Label htmlFor = {props.id}>{props.label}</Form.Label>
       <Form.Control
-        // id={props.id}
-        // label={props.label}
         name={props.name}
         variant={props.variant}
         type={props.type}

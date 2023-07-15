@@ -21,7 +21,7 @@ const SearchPackage = () => {
     <div className="search-container">
       <Form className="search-pack-form">
         <Row className="align-items-center">
-          <Col md={3}>
+          <Col md={3} sm={12}>
             <InputField
               label="Enter Keyword to search"
               id="searchid"
@@ -29,7 +29,7 @@ const SearchPackage = () => {
               name="location"
             />
           </Col>
-          <Col md={3}>
+          <Col md={3} sm={12}>
             <InputSelect
               selectTitle="Choose the type"
               name="type"
@@ -39,7 +39,7 @@ const SearchPackage = () => {
               title="type of package"
             />
           </Col>
-          <Col md={2}>
+          <Col md={2} sm={12}>
             <InputField
               label="Min Price"
               id="min_price"
@@ -47,7 +47,7 @@ const SearchPackage = () => {
               name="minPrice"
             />
           </Col>
-          <Col md={2}>
+          <Col md={2} sm={12}>
             <InputField
               label="Max Price"
               id="max_price"
@@ -55,7 +55,7 @@ const SearchPackage = () => {
               name="maxPrice"
             />
           </Col>
-          <Col md={2}>
+          <Col md={2} sm={12}>
             <MyButton
               type="submit"
               variant="primary"

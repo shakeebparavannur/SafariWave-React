@@ -1,11 +1,13 @@
 .search-container {
-    
   padding-top: 40px;
-  padding-left: 80px;
+  padding-left: 150px;
+  padding-right: 80px;
+  padding-bottom: 60px;
+  
   background-image: url("/static/find.jpg");
   color: #fff;
-  height: 200px;
-  position:relative;
+  height: auto;
+  /* position:relative;  */
 }
 
 .align-items-center{
