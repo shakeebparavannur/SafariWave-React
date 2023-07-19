@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { Link, useNavigate } from "react-router-dom";
+import { Link} from "react-router-dom";
 import PackageCard from "./PackageCard";
 import "./Packages.css";
 
 
 const Packages = () => {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const [pack, setPack] = useState([]);
   useEffect(() => {
     axios
@@ -15,9 +15,16 @@ const Packages = () => {
   }, []);
   console.log(pack);
   return (
-    <div className="package-container row mt-3 ms-3 me-3">
+    <>
+    <div className="package-section text-center">
+    <div className="package-section-title"><h2>Popular Destination</h2></div>
+    <div className="package-section-subtitle">Take a look at these offers</div>
+    </div>
+    <div className="package-container container-fluid row mt-3">
       {pack.map((p) => (
+          
         <div key={p.packId} className="package-container-card col-lg-3 col-md-6 mt-3">
+          <Link to={`productdetails/${p.packId}`}>
           <PackageCard
             id={p.packId}
             name={p.packageName}
@@ -27,12 +34,15 @@ const Packages = () => {
             price={p.pricePerHead}
             offerPrice={p.offerPrice}
             btnClass="packdetails"
-            actions={() => navigate(`productdetails/${p.packId}`)}
+            // actions={() => navigate(`productdetails/${p.packId}`)}
             Btnvalue="view details"
           />
+          </Link>
         </div>
+        
       ))}
     </div>
+    </>
   );
 };
 

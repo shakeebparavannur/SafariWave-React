@@ -1,12 +1,42 @@
-.package-card{
-  /* display: block; */
+.package-card {
+  display: block;
   position: relative;
   box-sizing: border-box;
 }
-.package-card img{
-  vertical-align: middle;
+
+.package-card img {
   border-style: none;
   max-width: 100%;
   width: 100%;
   height: 15rem;
+}
+
+.pack-data {
+  opacity: 0;
+  position: absolute;
+  /* bottom: -100%; */
+  left: 0;
+  right: 0;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 400;
+  background-color: rgba(0, 0, 0, 0.5);
+  transition: opacity 0.3s;
+  padding: 10px;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.pack-data .pack-price {
+  font-weight: 600;
+  font-size: 16px;
+}
+
+.pack-data .pack-place {
+  margin-top: 5px;
+}
+
+.package-card:hover .pack-data {
+  bottom: 0;
+  opacity: 1;
 }

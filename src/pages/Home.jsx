@@ -5,14 +5,16 @@ import Packages from "../components/Packages";
 import Banner from "../components/Banner";
 import "./Home.css";
 import SearchPackage from "../components/SearchPackage";
+import FeturedPackages from "../components/FeturedPackages";
 
 const Home = () => {
   return (
     <div className="Home">
-      <Navbar />
+      
       <Banner />
       <SearchPackage/>
       <Packages />
+      <FeturedPackages/>
     </div>
   );
 };

@@ -21,7 +21,7 @@ function App() {
     <>
       <BrowserRouter>
       <userContext.Provider value={{isUserLoggedIn,setIsUserLoggedIn}}>
-    
+      <Navbar />
       <Routes>
         <Route path='/' element = {<Home/>}/>
         <Route path='login' element = {<Login/>}/>

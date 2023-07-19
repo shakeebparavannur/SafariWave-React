@@ -1,1 +1,24 @@
 
+.package-container{
+    display: grid;
+    justify-content: space-evenly;
+}
+.package-section{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-top:5rem;
+    
+}
+.package-section-title h2{
+    font-weight: 300;
+
+}
+.package-section-subtitle{
+    font-size: 16px;
+    font-weight: 400;
+    color: #7d8293;
+    text-transform: uppercase;
+    margin-top: 19px;
+}
