@@ -73,6 +73,7 @@ const Navbar = () => {
               letterSpacing: ".3rem",
               color: "inherit",
               textDecoration: "none",
+              marginLeft:"10px"
             }}
           >
             Safari Wave

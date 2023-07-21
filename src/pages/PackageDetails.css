@@ -3,7 +3,7 @@
 .package-details-container {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    /* align-items: center; */
     padding: 20px;
     /* background-color: #110569; */
     /* position: relative; */
@@ -27,6 +27,9 @@
     text-align: center;
     color: #070707;
     text-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+   
+  }
+  .package-title h1{
     font-size: 36px;
     font-weight: 700;
   }
@@ -44,36 +47,75 @@
     color: #070707;
     font-size: 20px;
   }
-  .pack-details{
-    display: flex;
-    justify-content: space-between;
-    margin-top: 3rem;
-    margin-bottom: 3rem;
-    padding-bottom: 2rem;
-    border: 3px solid #070707;
+  .pack-desc h1{
+    font-weight: 700;
+    font-size: 26px;
+    line-height: 36px;
+    margin-bottom: 20px;
+  }
+  
+  .icon{
+    border: 1px solid #DEDEDE;
+    background-color: #FFF;
+    border-radius: 10px;
+    padding: 12px;
+    width: 48px;
+    height: 48px;
+    margin-right: 15px;
     
   }
-  .price{
-    display: flex;
-    align-items: center;
-    /* position: absolute; */
-    left: 20px;
+  .info-name{
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 26px;
+    color: #070707;
+    /* width: 5.5rem; */
+    /* margin: 0; */
   }
-.price-compare{
-  display: flex;
-  flex-direction: column;
+  .info-value{
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 22px;
+  }
+.details-row{
+  justify-content: space-between;
+  margin-top: 4rem;
+  width: 100%;
+  /* padding-left: 6rem;  */
 }
-.actual-price{
-  margin-right: 5px;
-  text-decoration: line-through;
+.facilities{
+    display: flex;
+    flex-direction: column;
+    /* width: 6%; */
+    margin-top: 3rem;
+    color: #070707;
+    font-size: 20px;
+    /* border: 1px solid #070707; */
+    border-radius: 10px;
+    
+
 }
-.offer-price {
-  color: #FF0000;
+.facilities h1{
+  font-weight: 700;
+  font-size: 26px;
+  line-height: 36px;
+  margin-bottom: 20px;
 }
-.col-sm-12{
+.facility-list{
+  list-style: none;
+}
+.book-form{
+  border: 1px solid #727272;
+  border-radius: 10px;
   margin-top: 3rem;
 }
-.price-tag,.type-icon{
-  height: 3rem;
-  width: 3rem;
+.price{
+  font-weight: 700;
+    font-size: 18px;
+    line-height: 26px;
+    margin-top: 8px;
+}
+.form-person,.form-date,.total-price{
+  padding: 20px;
+  border-bottom: 1px solid #dedede;
 }
