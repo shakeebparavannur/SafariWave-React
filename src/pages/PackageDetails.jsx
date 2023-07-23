@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect,useContext } from "react";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
@@ -9,6 +9,7 @@ import Groups2Icon from "@mui/icons-material/Groups2";
 import MyLocationIcon from "@mui/icons-material/MyLocation";
 import "./PackageDetails.css";
 import CheckBoxIcon from "@mui/icons-material/CheckBox";
+import { userContext } from "../App";
 
 
 const PackageDetails = () => {
@@ -19,6 +20,7 @@ const PackageDetails = () => {
   const [review, setReview] = useState([]);
   const [date,setDate] = useState()
   const { id } = useParams();
+  const { isUserLoggedIn } = useContext(userContext);
   const naviagate = useNavigate()
   
   const bookindDetails = {
@@ -39,7 +41,12 @@ const PackageDetails = () => {
       window.alert("please select a date")
     }
     else{
-      naviagate(`/confirmBooking/${id}`,{state:{bookindDetails}});
+      if(isUserLoggedIn){
+        naviagate(`/confirmBooking/${id}`,{state:{bookindDetails}});
+      }
+      else{
+        naviagate("/login",{ state: { originalPath: `/productdetails/${id}` } })
+      }
     }
   }
   
@@ -215,7 +222,7 @@ const PackageDetails = () => {
             <div className="form-date d-flex align-item-center justify-content-between">
               <div className="form-info-title">Choose the date</div>
               <div className="info-action">
-                <input type="date" onChange={handleDateChange} />
+                <input type="date" min={new Date().toISOString().split('T')[0]} onChange={handleDateChange} />
               </div>
             </div>
             <div className="form-person d-flex align-item-center justify-content-between">

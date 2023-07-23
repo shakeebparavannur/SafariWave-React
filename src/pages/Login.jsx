@@ -4,7 +4,7 @@ import InputField from "../components/InputField";
 // import { Box } from "@mui/material";
 import MyButton from "../components/Button";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import Cookies from 'js-cookie';
 import { Form } from "react-bootstrap";
 import { userContext } from "../App";
@@ -16,6 +16,8 @@ const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate()
+  const location = useLocation();
+  const prevPath = location?.state?.originalPath || "/"
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -34,7 +36,7 @@ const Login = () => {
         const role = decodToken.role;
         console.log(decodToken, role);
         setIsUserLoggedIn(true);
-        navigate('/');
+        navigate(prevPath);
       }
       else{
         alert(data.errorMessage);
