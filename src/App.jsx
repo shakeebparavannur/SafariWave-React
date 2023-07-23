@@ -12,6 +12,7 @@ import Navbar from './components/Navbar'
 import Services from './pages/Services'
 import AdminLogin from './Admin/AdminLogin'
 import AdminHome from './Admin/AdminHome'
+import ConfirmBooking from './pages/ConfirmBooking'
 export const userContext = createContext();
 function App() {
   const [count, setCount] = useState(0)
@@ -31,7 +32,7 @@ function App() {
         <Route path="Services" element = {<Services/>}/>
         <Route path="admin" element = {<AdminLogin/>}/>
         <Route path="adminhome" element = {<AdminHome/>}/>
-        
+        <Route path = "confirmBooking/:packId" element = {<ConfirmBooking/>}/>
         <Route path='productdetails/:id' element = {<PackageDetails/>}/>
       </Routes>
       </userContext.Provider>

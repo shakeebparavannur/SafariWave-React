@@ -1,28 +1,48 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
-import { CurrencyRupee } from "@mui/icons-material";
 import CardTravelIcon from "@mui/icons-material/CardTravel";
 import { AccessTime } from "@mui/icons-material";
 import Groups2Icon from "@mui/icons-material/Groups2";
 import MyLocationIcon from "@mui/icons-material/MyLocation";
 import "./PackageDetails.css";
 import CheckBoxIcon from "@mui/icons-material/CheckBox";
-import rupee from "/static/Rupee.png";
-import pricetag from "/static/price-tag.png";
-import typeIcon from "/static/types.png";
-import minIcon from "/static/add-group.png";
-import facility from "/static/travel-and-tourism.png";
 
-import { Typography } from "@mui/material";
 
 const PackageDetails = () => {
   const [packages, setPackage] = useState([]);
   const [facilities, setFacilities] = useState("");
   const [count, setCount] = useState(0);
   const [cost, setCost] = useState();
-
+  const [review, setReview] = useState([]);
+  const [date,setDate] = useState()
   const { id } = useParams();
+  const naviagate = useNavigate()
+  
+  const bookindDetails = {
+    date:date,
+    numOfPerson:count,
+    totalamount:cost,
+    packId:id,
+    minPerson:packages.minNoOfPerson,
+    price:packages.offerPrice
+  }
+
+  const handleDateChange =(e)=>{
+    setDate(e.target.value);
+  }
+  console.log(date,"date");
+  const handleBooking=()=>{
+    if(date==null|date==undefined){
+      window.alert("please select a date")
+    }
+    else{
+      naviagate(`/confirmBooking/${id}`,{state:{bookindDetails}});
+    }
+  }
+  
 
   const fetchData = async () => {
     try {
@@ -33,6 +53,7 @@ const PackageDetails = () => {
       setFacilities(response.data.facilities);
       setCount(response.data.minNoOfPerson);
       setCost(response.data.offerPrice * response.data.minNoOfPerson);
+      setReview(response.data.reviews);
     } catch (error) {
       console.error("Error fetching package details:", error);
     }
@@ -40,22 +61,21 @@ const PackageDetails = () => {
   useEffect(() => {
     fetchData();
   }, [id]);
-  useEffect(()=>{
-    setCost(count*packages.offerPrice)
-  },[count,packages.offerPrice]);
+  useEffect(() => {
+    setCost(count * packages.offerPrice);
+  }, [count, packages.offerPrice]);
   const handleInrement = () => {
     setCount((count) => count + 1);
-    
   };
   const handleDecrement = () => {
-    if (count <= 2) {
+    if (count <= packages.minNoOfPerson) {
       window.alert(`Minimum No of person is ${packages.minNoOfPerson}`);
     } else {
       setCount((count) => count - 1);
-      
     }
   };
-  console.log(packages);
+  console.log(packages, "packages");
+  console.log(review, "reviews");
   console.log(facilities);
   console.log(count, "count");
   return (
@@ -145,7 +165,7 @@ const PackageDetails = () => {
         </div>
       </div>
       <div className="additional-info row">
-        <div className="facilities col-md-8 col-sm-12">
+        <div className="facilities col-md-3 col-sm-12">
           <div className="info-name">
             <h1>Includes:</h1>
           </div>
@@ -160,18 +180,42 @@ const PackageDetails = () => {
             </ul>
           </div>
         </div>
-        <div className="book-form col-md-4">
+        <div className=" reviews col-md-5 col-sm-12">
+          <div className="info-name">
+            <h1>Reviews</h1>
+          </div>
+          <div className="info-value">
+            {review.map((rw) => (
+              <div className="d-flex justify-content-between">
+                <figure class="text-center">
+                  <blockquote class="blockquote">
+                    <span className="review">
+                      {rw.review1}
+                    </span>
+                    
+                  </blockquote>
+                  <figcaption class="blockquote-footer">
+                    {rw.userName}
+                  </figcaption>
+                </figure>
+              </div>
+            ))}
+          </div>
+        </div>
+        <div div className="book-form col-md-4">
           <div className="booking-price d-flex align-self-end">
             <span className="align-self-end">From: </span>
             <span className="price d-flex align-content-end flex-column">
-              <span className="text-lg">&nbsp;&nbsp;{packages.offerPrice}</span>
+              <span className="text-lg">
+                &nbsp;&nbsp;${packages.offerPrice}/person
+              </span>
             </span>
           </div>
           <div className="form-div">
             <div className="form-date d-flex align-item-center justify-content-between">
-              <div className="info-title">Choose the date</div>
+              <div className="form-info-title">Choose the date</div>
               <div className="info-action">
-                <input type="date" />
+                <input type="date" onChange={handleDateChange} />
               </div>
             </div>
             <div className="form-person d-flex align-item-center justify-content-between">
@@ -187,7 +231,7 @@ const PackageDetails = () => {
               <div className="info-action">{cost}</div>
             </div>
             <div className="form-submit d-flex align-item-center justify-content-center">
-              <button>submit</button>
+              <button className="book-btn" onClick={()=>handleBooking()}>Book the Tour</button>
             </div>
           </div>
         </div>

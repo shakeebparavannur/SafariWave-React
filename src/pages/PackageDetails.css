@@ -99,7 +99,7 @@
   color: #333;
   font-size: 18px;
 }
-.facilities h1 {
+.facilities h1,.reviews h1{
   font-weight: 700;
   font-size: 26px;
   line-height: 36px;
@@ -120,6 +120,8 @@
   border-radius: 10px;
   margin-top: 3rem;
   padding: 20px;
+  position: sticky;
+  top: 0;
 }
 .price {
   font-weight: 700;
@@ -146,11 +148,46 @@
   color: #fff;
   border: none;
   padding: 10px 20px;
-  border-radius: 5px;
+  border-radius: 20px;
   cursor: pointer;
   font-size: 16px;
 }
 
 .form-submit button:hover {
   background-color: #0056b3;
+}
+.form-date,.form-person,.total-price {
+  padding: 20px;
+}
+.form-info-title{
+  font-weight: 600;
+  font-size: 20px;
+}
+.form-div{
+  border:1px solid #dedede ;
+  padding: 20px;
+  position: sticky;
+  top: 0;
+  margin-top: 10px;
+  border-radius: 20px;
+
+}
+.reviews{
+  margin-top: 3rem;
+  /* border:1px solid #333; */
+  font-size: 15px
+}
+.review{
+  display:block;
+  white-space: nowrap;
+  overflow: hidden;
+  /* width: 100px; */
+  text-overflow: ellipsis;
+  max-width: 300px;
+}
+.review:hover {
+  white-space: normal;
+  overflow: visible;
+  max-width: none;
+  text-overflow: unset;
 }
