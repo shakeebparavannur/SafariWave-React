@@ -29,7 +29,9 @@ const AddPackage = () => {
           'Authorization': `Bearer ${token}`,
         },
       });
+
       console.log('successfully added');
+      
     } catch (error) {
       console.log(error);
     }

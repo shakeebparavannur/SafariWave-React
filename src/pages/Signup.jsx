@@ -7,6 +7,7 @@ import InputSelect from "../components/InputSelect";
 import MyButton from "../components/Button";
 import axios from "axios";
 import { Modal } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 
 
 const validationSchema = Yup.object().shape({
@@ -28,6 +29,7 @@ const otpValidatinSchema =Yup.object({otp:Yup.string().required("Otp is required
 const Signup = () => {
   const [errorMessage, setErrorMessage] = useState("")
   const [showOTPModal, setShowOTPModal] = useState(false);
+  const navigate = useNavigate()
   const statesInIndia = [
     "Andhra Pradesh",
     "Arunachal Pradesh",
@@ -84,7 +86,7 @@ const Signup = () => {
       try{
         const {confpassword,...reqData} = values
          const response = await axios.post("https://localhost:7254/api/Users/register",
-         reqData,{ withCredentials: true });
+         reqData);
          sessionStorage.setItem("userdata", JSON.stringify(response.data.result));
          console.log(response.data);
          console.log(response.data);
@@ -122,6 +124,8 @@ const Signup = () => {
         });
         console.log(response.data);
         setShowOTPModal(false);
+        navigate('/login')
+
       }
       catch(error){
         
