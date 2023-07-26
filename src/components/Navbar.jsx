@@ -1,5 +1,5 @@
 import React, { useContext, useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, Outlet } from "react-router-dom";
 import logo from "../assets/image/logo-tran-white-high.png";
 import {
   AppBar,
@@ -50,6 +50,7 @@ const Navbar = () => {
   };
 
   return (
+    <>
     <AppBar
       position="relative"
       sx={{ backgroundColor: "#131A2F", margin: "auto" }}
@@ -294,6 +295,8 @@ const Navbar = () => {
         </Toolbar>
       </Container>
     </AppBar>
+    <Outlet/>
+    </>
   );
 };
 

@@ -10,6 +10,7 @@ import MyLocationIcon from "@mui/icons-material/MyLocation";
 import "./PackageDetails.css";
 import CheckBoxIcon from "@mui/icons-material/CheckBox";
 import { userContext } from "../App";
+import Loading from "../components/Loading/Loading";
 
 
 const PackageDetails = () => {
@@ -19,6 +20,7 @@ const PackageDetails = () => {
   const [cost, setCost] = useState();
   const [review, setReview] = useState([]);
   const [date,setDate] = useState()
+  const [loading,setLoading] = useState(true);
   const { id } = useParams();
   const { isUserLoggedIn } = useContext(userContext);
   const naviagate = useNavigate()
@@ -56,6 +58,9 @@ const PackageDetails = () => {
       const response = await axios.get(
         `${import.meta.env.VITE_APP_URL}/api/Packages/package/${id}`
       );
+      setTimeout(()=>{
+        setLoading(false);
+      },3000)
       setPackage(response.data);
       setFacilities(response.data.facilities);
       setCount(response.data.minNoOfPerson);
@@ -63,6 +68,9 @@ const PackageDetails = () => {
       setReview(response.data.reviews);
     } catch (error) {
       console.error("Error fetching package details:", error);
+      setTimeout(()=>{
+        setLoading(false);
+      },3000)
     }
   };
   useEffect(() => {
@@ -86,6 +94,8 @@ const PackageDetails = () => {
   console.log(facilities);
   console.log(count, "count");
   return (
+    <>
+    {loading?(<Loading/>):(
     <div className="package-details-container container-fluid">
       <div className="cover-image">
         <img
@@ -244,6 +254,8 @@ const PackageDetails = () => {
         </div>
       </div>
     </div>
+    )}
+    </>
   );
 };
 

@@ -3,19 +3,35 @@ import axios from "axios";
 import { Link} from "react-router-dom";
 import PackageCard from "./PackageCard";
 import "./Packages.css";
+import Loading from "./Loading/Loading";
 
 
 const Packages = () => {
   // const navigate = useNavigate();
   const [pack, setPack] = useState([]);
+  const [loading,setLoading] = useState(true);
   useEffect(() => {
     axios
       .get(`${import.meta.env.VITE_APP_URL}/api/Packages`)
-      .then((response) => setPack(response.data));
+      .then((response) => {
+        setPack(response.data);
+        setTimeout(()=>{
+          setLoading(false);
+        },3000)
+        
+      })
+      .catch((error) => {
+        console.error("Error fetching packages:", error);
+        setTimeout(()=>{
+          setLoading(false);
+        },3000)
+      });
   }, []);
   console.log(pack);
   return (
     <>
+    {loading?(<Loading/>):(
+      <>
     <div className="package-section text-center">
     <div className="package-section-title"><h2>Popular Destination</h2></div>
     <div className="package-section-subtitle">Take a look at these offers</div>
@@ -42,6 +58,9 @@ const Packages = () => {
         
       ))}
     </div>
+    </>
+    )}
+    
     </>
   );
 };

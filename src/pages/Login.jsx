@@ -9,6 +9,7 @@ import Cookies from 'js-cookie';
 import { Form } from "react-bootstrap";
 import { userContext } from "../App";
 import jwtDecode from "jwt-decode";
+import { toast } from "react-toastify";
 
 
 const Login = () => {
@@ -30,6 +31,7 @@ const Login = () => {
       const data = response.data;
       console.log(data);
       if(data.isSuccess == true){
+        toast.success("Suucessfully logged in")
         console.log(data.result.token);
         Cookies.set('jwtToken',data.result.token)
         const decodToken = jwtDecode(data.result.token)
@@ -37,6 +39,7 @@ const Login = () => {
         console.log(decodToken, role);
         setIsUserLoggedIn(true);
         navigate(prevPath);
+        
       }
       else{
         alert(data.errorMessage);
@@ -49,6 +52,7 @@ const Login = () => {
   };
 
   return (
+    <div  className="container h-100 d-flex flex-coloum justify-content-center align-items-center mt-3">
     <Form
       // component="form"
       onSubmit={handleSubmit}
@@ -79,6 +83,7 @@ const Login = () => {
         variant="outline-success"
       />
     </Form>
+    </div>
   );
 };
 
