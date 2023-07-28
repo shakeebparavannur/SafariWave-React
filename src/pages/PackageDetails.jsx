@@ -52,7 +52,6 @@ const PackageDetails = () => {
     }
   }
   
-
   const fetchData = async () => {
     try {
       const response = await axios.get(

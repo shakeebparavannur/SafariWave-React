@@ -3,6 +3,8 @@ import { useLocation } from "react-router-dom";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import "./ConfirmBooking.css";
+import { toast } from "react-toastify";
+import Cookies from "js-cookie";
 
 const ConfirmBooking = () => {
   const { state } = useLocation();
@@ -11,6 +13,7 @@ const ConfirmBooking = () => {
   const [numOfPerson, setNumOfPerson] = useState(
     state.bookindDetails.numOfPerson
   );
+  const token = Cookies.get("jwtToken");
   const [totalAmount, setTotalAmount] = useState(
     state.bookindDetails.totalamount
   );
@@ -36,11 +39,17 @@ const ConfirmBooking = () => {
     try {
       const response = await axios.post(
         `${import.meta.env.VITE_APP_URL}/api/Booking/BookPackage`,
-        reqData
+        reqData,{
+          headers:{
+            'Authorization' :`Bearer ${token}`
+          }
+        }
       );
       console.log(response.data);
-      
+      toast.success("Your booking has placed please do the payment");
+      navigate(`/initpayment/${response.data.bookingId}`);
     } catch (err) {
+      toast.error("Something went wrong");
       console.log(err.message);
     }
   };
@@ -77,7 +86,9 @@ const ConfirmBooking = () => {
           <div className="info-action">{totalAmount}</div>
         </div>
       </div>
-      <button className="payment-button">Proceed to Payment</button>
+      <button className="payment-button" onClick={() => handleBooking()}>
+        Confirm the booking
+      </button>
     </div>
   );
 };
