@@ -9,6 +9,7 @@ import Cookies from "js-cookie";
 const ConfirmBooking = () => {
   const { state } = useLocation();
   const navigate = useNavigate();
+  const [bookingData, setBookingDta] = useState({name:"shakeeb"});
   const [date, setDate] = useState(state.bookindDetails.date);
   const [numOfPerson, setNumOfPerson] = useState(
     state.bookindDetails.numOfPerson
@@ -45,14 +46,17 @@ const ConfirmBooking = () => {
           }
         }
       );
-      console.log(response.data);
+      console.log(response.data.userId);
+      setBookingDta(async()=> await response.data);
+      
       toast.success("Your booking has placed please do the payment");
-      navigate(`/initpayment/${response.data.bookingId}`);
+      navigate(`/payment/${response.data.bookingId}`);
     } catch (err) {
       toast.error("Something went wrong");
       console.log(err.message);
     }
   };
+  console.log(bookingData,"bookingdataConfirm");
   console.log(state);
   return (
     <div className="confirmation-container">

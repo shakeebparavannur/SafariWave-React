@@ -47,7 +47,7 @@ const ProceedPayment = () => {
   }, []);
 
   useEffect(() => {
-    // This useEffect will be triggered whenever secretKey or bookingData.bookingId changes
+    
     if (secretKey && bookingData.bookingId) {
       console.log(secretKey, "secret key");
       navigate(`/payment/${bookingData.bookingId}`, {
