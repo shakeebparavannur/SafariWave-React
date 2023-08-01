@@ -69,7 +69,7 @@ const Payment = () => {
               <OrderSummary bookingData={bookingData}  />
             </div>
             <div className="col-md-5">
-              <CheckoutForm />
+              <CheckoutForm bookingData={bookingData} paymentData={paymentData} />
             </div>
           </div>
         </div>

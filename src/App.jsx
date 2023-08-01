@@ -16,6 +16,8 @@ import ConfirmBooking from "./pages/ConfirmBooking";
 import Payment from "./pages/Payment";
 import { ToastContainer } from "react-toastify";
 import ProceedPayment from "./pages/ProceedPayment";
+import Orders from "./pages/Orders";
+import OrderDetails from "./pages/OrderDetails";
 
 export const userContext = createContext();
 function App() {
@@ -43,12 +45,16 @@ function App() {
             <Route path="productdetails/:id" element={<PackageDetails />} />
             <Route path="payment/:bookingId" element={<Payment />} />
             <Route path="initpayment/:bookingId" element={<ProceedPayment />} />
+            <Route path="orders" element={<Orders />} />
+            <Route path="order/:orderId" element={<OrderDetails />} />
+
+
             </Route>
           </Routes>
         </userContext.Provider>
         <ToastContainer
           position="top-right"
-          autoClose={5000}
+          autoClose={3000}
           hideProgressBar={false}
           newestOnTop={false}
           closeOnClick
