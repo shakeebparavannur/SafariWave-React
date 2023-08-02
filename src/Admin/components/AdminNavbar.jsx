@@ -4,7 +4,7 @@ import { AppBar, Toolbar, Typography, IconButton, InputBase, Box } from '@mui/ma
 import { Search as SearchIcon } from '@mui/icons-material';
 import Cookies from 'js-cookie';
 import { useEffect } from 'react';
-import { userContext } from '../App';
+import { userContext } from '../../App';
 
 const AdminNavbar = () => {
     const {isUserLoggedIn,setIsUserLoggedIn} = useContext(userContext)
@@ -24,11 +24,11 @@ const AdminNavbar = () => {
         </Typography>
 
         <Box sx={{ display: 'flex', alignItems: 'center' }}>
-          <Link to="/" style={{ color: 'white', textDecoration: 'none', marginRight: '16px' }}>
+          {/* <Link to="/" style={{ color: 'white', textDecoration: 'none', marginRight: '16px' }}>
             <Typography variant="subtitle1">
               Home
             </Typography>
-          </Link>
+          </Link> */}
           <Link to="/packages" style={{ color: 'white', textDecoration: 'none', marginRight: '16px' }}>
             <Typography variant="subtitle1">
               Packages

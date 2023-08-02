@@ -287,6 +287,12 @@ const Navbar = () => {
                     <Typography textAlign="center">SignUp</Typography>
                     </Link>
                   </MenuItem>
+                  <MenuItem>
+                  <Link to="/adminLogin"
+                  style={{textDecoration:"none",color: "black",}}>
+                    <Typography textAlign="center">Admin</Typography>
+                    </Link>
+                  </MenuItem>
                 </div>
               )}
             </Menu>

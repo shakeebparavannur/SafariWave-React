@@ -1,13 +1,13 @@
 import React, { useState,useContext } from "react";
 import "./Login.css";
-import InputField from "../components/InputField";
+import InputField from "../../components/InputField";
 // import { Box } from "@mui/material";
-import MyButton from "../components/Button";
+import MyButton from "../../components/Button";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import Cookies from 'js-cookie';
 import { Form } from "react-bootstrap";
-import { userContext } from "../App";
+import { userContext } from "../../App";
 
 
 const AdminLogin = () => {
@@ -43,13 +43,14 @@ const AdminLogin = () => {
   };
 
   return (
+    <div  className=" border container h-100 d-flex flex-coloum justify-content-center align-items-center mt-3">
     <Form
       // component="form"
       onSubmit={handleSubmit}
       sx={{ "&>:not(style)": { m: 1, width: "25ch" } }}
       autoComplete="off"
     >
-      <h3>Admin Login</h3>
+      <h2 className="font-weight-bold">Admin Login</h2>
       <InputField
         id="username"
         label="Username"
@@ -71,8 +72,10 @@ const AdminLogin = () => {
         value="login"
         name="login"
         variant="outline-success"
+        class="mt-3 align-center"
       />
     </Form>
+    </div>
   );
 };
 

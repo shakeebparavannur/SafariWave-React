@@ -28,9 +28,9 @@ const Orders = () => {
       <Card>
         <Card.Img variant="top" src={`${import.meta.env.VITE_APP_URL}/Image/${order.booking.package.image1}`} />
         <Card.Body>
-          <Card.Title>Order Id: {order.id}</Card.Title>
+          <Card.Title>Order Id: {order.id}</Card.Title>   //TODO:ADD NEW ITEM
           <Card.Text>
-             
+          
           </Card.Text>
         </Card.Body>
         <Card.Footer>

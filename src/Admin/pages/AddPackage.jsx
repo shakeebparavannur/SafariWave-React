@@ -1,13 +1,13 @@
 import React from 'react';
-import InputField from '../components/InputField';
+import InputField from '../../components/InputField';
 import { Form } from 'react-bootstrap';
-import InputSelect from '../components/InputSelect';
-import InputCheck from '../components/InputCheck';
+import InputSelect from '../../components/InputSelect';
+import InputCheck from '../../components/InputCheck';
 import axios from 'axios';
 import Cookies from 'js-cookie';
 import './AddPackage.css'; // Import the CSS file
 
-import MyButton from '../components/Button'; // Import the custom button component
+import MyButton from '../../components/Button'; // Import the custom button component
 
 const AddPackage = () => {
   const duration = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
@@ -23,7 +23,7 @@ const AddPackage = () => {
     const selectedFacilities = Array.from(formData.getAll('Facilities')).join(', ');
     formData.set('Facilities', selectedFacilities);
     try {
-      await axios.post('https://localhost:7254/api/Packages/AddPackage', formData, {
+      await axios.post(`${import.meta.env.VITE_APP_URL}/api/Packages/AddPackage`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
           'Authorization': `Bearer ${token}`,
